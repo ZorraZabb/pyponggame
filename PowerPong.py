@@ -90,10 +90,12 @@ class BallSprite(pygame.sprite.Sprite):
         global scoreLeft, scoreRight
         if pygame.sprite.collide_rect(self, leftTopPaddle) and (self.xStep < 0):  
             # hit left paddle and going left
+            self.xStep, self.yStep = self.randomSteps()
             self.xStep = -self.xStep    # change direction
 
         elif pygame.sprite.collide_rect(self, rightTopPaddle) and (self.xStep > 0):  
             # hit right paddle and going right
+            self.xStep, self.yStep = self.randomSteps()
             self.xStep = -self.xStep    # change direction
 
 
@@ -101,10 +103,13 @@ class BallSprite(pygame.sprite.Sprite):
         if pygame.sprite.collide_rect(self, leftBottomPaddle) and (self.xStep < 0):  
             # hit left paddle and going left
             self.xStep = -self.xStep    # change direction
+            self.yStep = 0
+
 
         elif pygame.sprite.collide_rect(self, rightBottomPaddle) and (self.xStep > 0):  
             # hit right paddle and going right
             self.xStep = -self.xStep
+            self.yStep = 0
 
         if pygame.sprite.spritecollideany(self, horizWalls):
             # change y-step direction at top and bottom sides
@@ -172,7 +177,7 @@ right  = BlockSprite(scrWidth-WALL_SIZE, 0, WALL_SIZE, scrHeight)
 center_right = BlockSprite(0, scrHeight / 2.75, WALL_SIZE, scrHeight / 4, RED)
 center_left = BlockSprite(scrWidth-WALL_SIZE, scrHeight / 2.75, WALL_SIZE, scrHeight / 4, RED)
 
-#?(6) separate the paddle to top and bottom
+#?(4) separate the paddle to top and bottom
 #? 285 comes from (scrHeight - leftTopPaddle's Position - leftTopPaddle's Height)
 leftTopPaddle = TopPaddle(50, (scrHeight/2),10,75,BLUE)
 leftBottomPaddle = BottomPaddle(50, (scrHeight-285),10,75,RED)

@@ -45,8 +45,10 @@ while running:
         if event.type == KEYDOWN:
             if event.key == K_x:
                 xStep = -xStep
+                #! x will reverse the way it moves, if pressed x
             if event.key == K_y:
                 yStep = -yStep
+                #! y will reverse the way it moves, if pressed y
 
     # update game state
     #? change x position, if the ball moves to the right edge of windows
