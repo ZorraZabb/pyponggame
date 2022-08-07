@@ -174,8 +174,8 @@ left   = BlockSprite(0, 0, WALL_SIZE, scrHeight)
 right  = BlockSprite(scrWidth-WALL_SIZE, 0, WALL_SIZE, scrHeight)
 
 #?(5) make a new wall to set the score
-center_right = BlockSprite(0, scrHeight / 2.75, WALL_SIZE, scrHeight / 4, RED)
-center_left = BlockSprite(scrWidth-WALL_SIZE, scrHeight / 2.75, WALL_SIZE, scrHeight / 4, RED)
+center_left = BlockSprite(0, scrHeight / 2.75, WALL_SIZE, scrHeight / 4, RED)
+center_right = BlockSprite(scrWidth-WALL_SIZE, scrHeight / 2.75, WALL_SIZE, scrHeight / 4, RED)
 
 #?(4) separate the paddle to top and bottom
 #? 285 comes from (scrHeight - leftTopPaddle's Position - leftTopPaddle's Height)
@@ -216,6 +216,9 @@ start_time = time.time() #* values from (2) for count start time
 while running:
     sec_time = int(time.time() - start_time) #* (2) declare sec_time for count second that have passed
     clock.tick(30 + (scoreLeft + scoreRight) * 4 + sec_time) #!(6) the speed of ball depends on player's score and the game time
+
+
+    # print(f"start_time : {start_time}, a time : {time.time()}, sec_time : {sec_time}")
 
     # handle events
     for event in pygame.event.get():
@@ -271,11 +274,11 @@ while running:
     if sec_time >= TIME_END:
         gameOver = True
         if scoreLeft > scoreRight:
-            winMsg = "Left Wins!"
+            winMsg = "Left Wins! By time end"
         elif scoreLeft < scoreRight:
-            winMsg = "Right Wins!"
+            winMsg = "Right Wins! By time end"
         else:
-            winMsg = "Both Wins!"
+            winMsg = "Both Wins! By time end"
 
     if gameOver:
         centerImage(screen, font.render(winMsg, True, RED))
